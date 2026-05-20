@@ -1,0 +1,30 @@
+services:
+  # Backend Service
+  - type: web
+    name: lead-app-backend
+    env: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        sync: false # You will enter your MongoDB Atlas URI in the Render Dashboard
+      - key: JWT_SECRET
+        generateValue: true # Render automatically creates a secure secret
+
+  # Frontend Service
+  - type: web
+    name: lead-app-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    routes:
+      # This route is crucial for React Router to work correctly on a static host
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        sync: false # You will set this to: https://your-backend-url.onrender.com/api
