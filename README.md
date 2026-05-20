@@ -2,6 +2,10 @@
 
 A full-stack Lead Management Dashboard built with the MERN stack (MongoDB, Express, React, Node.js) and TypeScript. Designed with clean architecture, scalable code practices, and a professional user experience.
 
+## Live Deployment
+
+- **Frontend Application:** [https://smart-leads-dashboard-1-078j.onrender.com](https://smart-leads-dashboard-1-078j.onrender.com)
+
 ## Features
 
 - **Authentication System**: Secure JWT-based authentication with bcrypt hashing.
