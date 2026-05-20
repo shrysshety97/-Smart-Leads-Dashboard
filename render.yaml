@@ -4,7 +4,7 @@ services:
     name: lead-app-backend
     runtime: docker
     rootDir: backend
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./backend/Dockerfile
     envVars:
       - key: PORT
         value: "5000"
@@ -19,7 +19,7 @@ services:
     runtime: static
     rootDir: frontend
     buildCommand: npm install && npm run build
-    publishPath: dist
+    staticPublishPath: ./dist
     envVars:
       - key: VITE_API_URL
         sync: false # You will set this to: https://your-backend-url.onrender.com/api
