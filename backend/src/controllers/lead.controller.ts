@@ -22,7 +22,7 @@ export const getLeads = async (req: Request, res: Response) => {
 
     const { status, source, search, sort } = req.query;
 
-    let query: mongoose.FilterQuery<ILead> = {};
+    let query: any = {};
 
     // Filter by status
     if (status) {
@@ -100,7 +100,7 @@ export const createLead = async (req: Request, res: Response) => {
     res.status(201).json(createdLead);
   } catch (error: any) {
     if (error instanceof z.ZodError) {
-      return res.status(400).json({ message: error.errors[0].message });
+      return res.status(400).json({ message: (error as any).errors[0].message });
     }
     res.status(500).json({ message: error.message });
   }
@@ -128,7 +128,7 @@ export const updateLead = async (req: Request, res: Response) => {
     }
   } catch (error: any) {
     if (error instanceof z.ZodError) {
-      return res.status(400).json({ message: error.errors[0].message });
+      return res.status(400).json({ message: (error as any).errors[0].message });
     }
     res.status(500).json({ message: error.message });
   }
@@ -159,7 +159,7 @@ export const exportLeads = async (req: Request, res: Response) => {
   try {
     const { status, source, search } = req.query;
 
-    let query: mongoose.FilterQuery<ILead> = {};
+    let query: any = {};
 
     if (status) query.status = status as string;
     if (source) query.source = source as string;
